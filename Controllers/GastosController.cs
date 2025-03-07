@@ -23,7 +23,11 @@ namespace TiendaFamiliarMVC.Controllers
         // GET: Gastos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.gastos.ToListAsync());
+            var gastos = await _context.gastos
+                .OrderByDescending(v => v.fecha) // Ordena por fecha descendente (más recientes primero)
+                .ToListAsync();
+
+            return View(gastos);
         }
 
         // GET: Gastos/Details/5

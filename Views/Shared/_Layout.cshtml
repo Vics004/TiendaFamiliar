@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,26 +7,157 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TiendaFamiliarMVC.styles.css" asp-append-version="true" />
+    <style>
+        /* Estilos personalizados para la barra de navegación */
+        .navbar {
+            background: linear-gradient(to right, #000000, #434343);
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            color: #fff !important;
+        }
+
+            .navbar-nav .nav-item .nav-link:hover {
+                color: #d3d3d3 !important;
+            }
+
+        .navbar-toggler-icon {
+            background-color: #fff;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+        }
+
+        .footer a {
+            color: #007bff;
+        }
+
+            .footer a:hover {
+                text-decoration: underline;
+            }
+
+        /* Estilo para los botones */
+        .btn-link {
+            color: #007bff !important;
+        }
+
+            .btn-link:hover {
+                color: #0056b3 !important;
+            }
+
+        .btn {
+            border-radius: 20px;
+        }
+
+        .navbar-toggler {
+            border: 1px solid #007bff;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        /* Estilos generales para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        /* Estilo para los encabezados de la tabla */
+        th {
+            background-color: black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        thead tr {
+            background-color: black;
+            color: white;
+        }
+
+        /* Estilo para las celdas de la tabla */
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        /* Fila resaltada cuando el mouse pasa por encima */
+        tbody tr:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        /* Borde redondeado para la tabla */
+        table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Añadir sombra a la tabla */
+        table {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo para la tabla cuando no hay datos */
+        .empty-table {
+            text-align: center;
+            color: #999;
+        }
+
+        /* Paginación y controles */
+        .pagination {
+            justify-content: center;
+        }
+
+            .pagination a {
+                color: #007bff;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+
+                .pagination a:hover {
+                    background-color: #007bff;
+                    color: white;
+                }
+
+        /* Estilo para los botones de acción dentro de las tablas */
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.875rem;
+        }
+
+        .btn-warning, .btn-info, .btn-danger {
+            border-radius: 5px;
+        }
+    </style>
+   
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TiendaFamiliarMVC</a>
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">TiendaFamiliarMVC</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Gastos" asp-action="Index">Gastos</a>
+                                <a class="nav-link" asp-area="" asp-controller="Gastos" asp-action="Index">Gastos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Ventas" asp-action="Index">Ventas</a>
+                                <a class="nav-link" asp-area="" asp-controller="Ventas" asp-action="Index">Ventas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Ganancias" asp-action="Index">Ganancias</a>
                             </li>
                         }
                     </ul>
@@ -43,7 +174,7 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cuenta" asp-action="Login">Iniciar Sesión</a>
+                                <a class="nav-link" asp-area="" asp-controller="Cuenta" asp-action="Login">Iniciar Sesión</a>
                             </li>
                         }
                     </ul>
@@ -58,13 +189,15 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container text-center">
             &copy; 2025 - TiendaFamiliarMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,28 +9,26 @@ using TiendaFamiliarMVC.Models;
 
 namespace TiendaFamiliarMVC.Controllers
 {
-    [Authorize]
-    public class VentasController : Controller
+    public class GananciasController : Controller
     {
         private readonly TiendaFamiliarContext _context;
 
-        public VentasController(TiendaFamiliarContext context)
+        public GananciasController(TiendaFamiliarContext context)
         {
             _context = context;
         }
 
-        // GET: Ventas
+        // GET: Ganancias
         public async Task<IActionResult> Index()
         {
-            var ventas = await _context.ventas
+            var ganancias = await _context.ganancias
                 .OrderByDescending(v => v.fecha) // Ordena por fecha descendente (más recientes primero)
                 .ToListAsync();
 
-            return View(ventas);
+            return View(ganancias);
         }
 
-
-        // GET: Ventas/Details/5
+        // GET: Ganancias/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,39 +36,39 @@ namespace TiendaFamiliarMVC.Controllers
                 return NotFound();
             }
 
-            var ventas = await _context.ventas
+            var ganancias = await _context.ganancias
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (ventas == null)
+            if (ganancias == null)
             {
                 return NotFound();
             }
 
-            return View(ventas);
+            return View(ganancias);
         }
 
-        // GET: Ventas/Create
+        // GET: Ganancias/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Ventas/Create
+        // POST: Ganancias/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,fecha,producto,monto")] Ventas ventas)
+        public async Task<IActionResult> Create([Bind("id,fecha,total_ventas,total_gastos,ganancia")] Ganancias ganancias)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(ventas);
+                _context.Add(ganancias);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(ventas);
+            return View(ganancias);
         }
 
-        // GET: Ventas/Edit/5
+        // GET: Ganancias/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,22 +76,22 @@ namespace TiendaFamiliarMVC.Controllers
                 return NotFound();
             }
 
-            var ventas = await _context.ventas.FindAsync(id);
-            if (ventas == null)
+            var ganancias = await _context.ganancias.FindAsync(id);
+            if (ganancias == null)
             {
                 return NotFound();
             }
-            return View(ventas);
+            return View(ganancias);
         }
 
-        // POST: Ventas/Edit/5
+        // POST: Ganancias/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,fecha,producto,monto")] Ventas ventas)
+        public async Task<IActionResult> Edit(int id, [Bind("id,fecha,total_ventas,total_gastos,ganancia")] Ganancias ganancias)
         {
-            if (id != ventas.id)
+            if (id != ganancias.id)
             {
                 return NotFound();
             }
@@ -103,12 +100,12 @@ namespace TiendaFamiliarMVC.Controllers
             {
                 try
                 {
-                    _context.Update(ventas);
+                    _context.Update(ganancias);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VentasExists(ventas.id))
+                    if (!GananciasExists(ganancias.id))
                     {
                         return NotFound();
                     }
@@ -119,10 +116,10 @@ namespace TiendaFamiliarMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(ventas);
+            return View(ganancias);
         }
 
-        // GET: Ventas/Delete/5
+        // GET: Ganancias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,34 +127,34 @@ namespace TiendaFamiliarMVC.Controllers
                 return NotFound();
             }
 
-            var ventas = await _context.ventas
+            var ganancias = await _context.ganancias
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (ventas == null)
+            if (ganancias == null)
             {
                 return NotFound();
             }
 
-            return View(ventas);
+            return View(ganancias);
         }
 
-        // POST: Ventas/Delete/5
+        // POST: Ganancias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ventas = await _context.ventas.FindAsync(id);
-            if (ventas != null)
+            var ganancias = await _context.ganancias.FindAsync(id);
+            if (ganancias != null)
             {
-                _context.ventas.Remove(ventas);
+                _context.ganancias.Remove(ganancias);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VentasExists(int id)
+        private bool GananciasExists(int id)
         {
-            return _context.ventas.Any(e => e.id == id);
+            return _context.ganancias.Any(e => e.id == id);
         }
     }
 }

@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<TiendaFamiliarMVC.Models.Ventas>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ventas";
 }
 
-<h1>Index</h1>
+<h1>Ventas  <a asp-action="Create" class="btn btn-success bg-light">➕</a></h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -21,7 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.monto)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -37,9 +34,9 @@
                 @Html.DisplayFor(modelItem => item.monto)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-warning btn-sm">✏️</a>
+                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">🔍</a>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-sm">🗑️</a>
             </td>
         </tr>
 }

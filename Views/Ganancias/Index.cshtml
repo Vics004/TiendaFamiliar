@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TiendaFamiliarMVC.Models.Ganancias>
+
+@{
+    ViewData["Title"] = "Ganancias";
+}
+
+<h1>Ganancias</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total_ventas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total_gastos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ganancia)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total_ventas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total_gastos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ganancia)
+            </td>
+            <td>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

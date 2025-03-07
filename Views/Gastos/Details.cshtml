@@ -1,13 +1,12 @@
 ﻿@model TiendaFamiliarMVC.Models.Gastos
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
 
-<h1>Details</h1>
+<h1>Detalle - Gasto</h1>
 
 <div>
-    <h4>Gastos</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -31,6 +30,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.id" style="background-color: gold; border:none" class="btn btn-primary">✏️</a>
+    <a asp-action="Index" style="background-color: red; border:none" class="btn btn-primary">Cancelar</a>
 </div>
